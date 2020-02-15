@@ -10,6 +10,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.appcompat.widget.Toolbar
+        app:title="CollegeMate"
+        app:titleTextColor="@color/colorWhite"
         android:id="@+id/home_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

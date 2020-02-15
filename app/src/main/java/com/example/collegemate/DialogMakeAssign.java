@@ -139,7 +139,6 @@ public class DialogMakeAssign extends DialogFragment {
 
 
         setupNotifications();
-        FragmentReminders.adapter.notifyDataSetChanged();
 
         if(Global.documentData.assignment == null){
             Global.documentData.assignment = new ArrayList<>();
@@ -155,6 +154,7 @@ public class DialogMakeAssign extends DialogFragment {
             public void onSuccess(Void aVoid) {
                 pb.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), "Assignment Successfully Added", Toast.LENGTH_SHORT).show();
+                FragmentReminders.adapter.notifyDataSetChanged();
             }
         });
 

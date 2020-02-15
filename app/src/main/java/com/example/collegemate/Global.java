@@ -1,5 +1,6 @@
 package com.example.collegemate;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 
 import com.google.firebase.firestore.DocumentReference;
@@ -89,6 +90,27 @@ public class Global {
                 this.missed = missed;
             }
         }
+
+        static class PollModal{
+            public String uploaded;
+            public Integer accept;
+            public Integer reject;
+            public Long time;
+            public String subject;
+            public String body;
+
+            public PollModal(){
+            }
+
+            public PollModal(String subject, String body,String uploaded, Integer accept, Integer reject, Long time) {
+                this.uploaded = uploaded;
+                this.accept = accept;
+                this.reject = reject;
+                this.time = time;
+                this.subject = subject;
+                this.body = body;
+            }
+        }
     }
 
     //Class to store all the data from UserDocument from Firebase
@@ -99,25 +121,29 @@ public class Global {
         public Map<String,ModalClasses.AttendanceModal> attendance;
         public List<ModalClasses.AssignmentModal> assignment;
         public ArrayList<FileModal> savedFileModal;
+        public ArrayList<Long> pollsreacted;
 
         public UserData(){
 
         }
 
-        public UserData(Map<String, List<ModalClasses.TimeTableModal>> timetable, ModalClasses.UserInfoModal userinfo,List<String> subjects, ArrayList<FileModal> fileModal) {
+        public UserData(ArrayList<Long> pollsreacted,Map<String, List<ModalClasses.TimeTableModal>> timetable, ModalClasses.UserInfoModal userinfo,List<String> subjects, ArrayList<FileModal> fileModal) {
             this.timetable = timetable;
             this.userInfo = userinfo;
             this.subjects = subjects;
             this.savedFileModal = fileModal;
+            this.pollsreacted = pollsreacted;
         }
 
     }
     static DocumentReference userRef;
     static DocumentReference userFieldRef;
+    static DocumentReference pollRef;
     static int NUMBER_OF_CLASSES = 56;
 
     static List<String> branches;
     static List<String> batches;
+    static ArrayList<ModalClasses.PollModal> polls = new ArrayList<>();
 
 
 

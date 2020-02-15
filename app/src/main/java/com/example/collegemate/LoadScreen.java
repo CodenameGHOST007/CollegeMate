@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +71,7 @@ public class LoadScreen extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.getResult()!=null){
                     Global.documentData = task.getResult().toObject(Global.UserData.class);
+                    loadpolls();
                     startActivity(new Intent(LoadScreen.this,Home.class));
                     finish();
                 }else{
@@ -78,6 +80,20 @@ public class LoadScreen extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void loadpolls(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Global.pollRef = db.collection("commonData").document("polls");
+        Global.pollRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.getResult() !=null){
+                    Global.polls = (ArrayList<Global.ModalClasses.PollModal>) task.getResult().get(Global.documentData.userInfo.batch.toString());
+                }
+            }
+        });
+
     }
 
     public boolean isUserExists(){
