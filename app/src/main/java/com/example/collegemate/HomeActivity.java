@@ -86,6 +86,17 @@ public class HomeActivity extends AppCompatActivity {
         }
     };
 
+    private boolean isEmpty(){
+        if(username.getText().equals("")){
+            return true;
+        }else if(password.getText().equals("")){
+            return true;
+        }
+
+        return false;
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -99,7 +110,7 @@ public class HomeActivity extends AppCompatActivity {
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                // ...
+                //
             }
 
         }
@@ -127,21 +138,27 @@ public class HomeActivity extends AppCompatActivity {
     private View.OnClickListener submitCallback = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String email = username.getText().toString()+"@collegemate.com";
-            String pass = password.getText().toString();
 
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            mAuth.signInWithEmailAndPassword(email,pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                @Override
-                public void onSuccess(AuthResult authResult) {
-                    startActivity(new Intent(HomeActivity.this,LoadScreen.class));
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(HomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            if(isEmpty()){
+                Toast.makeText(HomeActivity.this, "Please fill all the entries", Toast.LENGTH_SHORT).show();
+            }else{
+                String email = username.getText().toString()+"@collegemate.com";
+                String pass = password.getText().toString();
+
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                mAuth.signInWithEmailAndPassword(email,pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        startActivity(new Intent(HomeActivity.this,LoadScreen.class));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(HomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
         }
     };
 }

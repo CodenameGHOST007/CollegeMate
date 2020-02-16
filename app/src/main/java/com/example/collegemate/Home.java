@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -55,7 +56,7 @@ public class Home extends AppCompatActivity {
     MenuItem prevMenu;
     ListView lv;
     DrawerLayout drawerLayout;
-    Button logout;
+    Button logout,aboutus;
 
 
     @Override
@@ -73,6 +74,7 @@ public class Home extends AppCompatActivity {
         drawerLayout = findViewById(R.id.home_drawer);
         lv = findViewById(R.id.home_drawer_list);
         logout = findViewById(R.id.home_logout);
+        aboutus = findViewById(R.id.home_aboutus);
 
         //Getting the user info
 
@@ -137,6 +139,15 @@ public class Home extends AppCompatActivity {
                 startActivity(new Intent(Home.this,HomeActivity.class));
 
                 finish();
+            }
+        });
+
+        aboutus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogAboutUs dialog = new DialogAboutUs();
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                dialog.show(ft,"hello");
             }
         });
 

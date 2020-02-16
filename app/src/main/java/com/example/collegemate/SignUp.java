@@ -66,24 +66,38 @@ public class SignUp extends AppCompatActivity {
     private View.OnClickListener submitCallback = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String email = username.getText().toString()+"@collegemate.com";
-            String pass = password.getText().toString();
-            final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            mAuth.createUserWithEmailAndPassword(email,pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                @Override
-                public void onSuccess(AuthResult authResult) {
-                    SignUpInfoDialog dialog = new SignUpInfoDialog();
-                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    dialog.show(ft,"hello");
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(SignUp.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-                }
-            });
+            if(isEmpty()){
+                Toast.makeText(SignUp.this, "Please fill all the entries", Toast.LENGTH_SHORT).show();
+            }else{
+                String email = username.getText().toString()+"@collegemate.com";
+                String pass = password.getText().toString();
+                final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                mAuth.createUserWithEmailAndPassword(email,pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        SignUpInfoDialog dialog = new SignUpInfoDialog();
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                        dialog.show(ft,"hello");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(SignUp.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
         }
     };
+
+    private boolean isEmpty(){
+        if(username.getText().toString().equals("")){
+            return  true;
+        }else if(password.getText().toString().equals("")){
+            return true;
+        }
+        return false;
+    }
     int RC_SIGN_IN = 100;
     private View.OnClickListener googleCallback = new View.OnClickListener() {
         @Override

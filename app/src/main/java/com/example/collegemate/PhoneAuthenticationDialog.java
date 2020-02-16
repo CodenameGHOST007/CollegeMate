@@ -74,6 +74,13 @@ public class PhoneAuthenticationDialog extends DialogFragment {
     }
     String sentOTP = "";
 
+    private boolean isEmpty(){
+        if(phone.getText().toString().equals("")){
+            return true;
+        }
+        return false;
+    }
+
     private void loginWithPhoneCredentials(PhoneAuthCredential credential){
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {

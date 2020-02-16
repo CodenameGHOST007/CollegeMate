@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.microedition.khronos.opengles.GL;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -102,7 +104,7 @@ public class SignUpInfoDialog extends DialogFragment {
                 builder.setItems(years, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        branchid = which;
+                        yearid = which;
                         yearshow.setText(years[which]);
                     }
                 });
@@ -152,6 +154,15 @@ public class SignUpInfoDialog extends DialogFragment {
 
                 if(getArguments()!=null){
                     getDialog().dismiss();
+                    Global.documentData.userInfo.year = yearid;
+                    Global.documentData.userInfo.batch = batchid;
+                    Global.documentData.userInfo.name = name.getText().toString();
+                    Global.documentData.userInfo.branch = branchid;
+                    Global.documentData.userInfo.gender = genderid;
+
+                    p.showData();
+
+
                 }else{
                     FirebaseAuth mAuth =FirebaseAuth.getInstance();
                     FirebaseUser user = mAuth.getCurrentUser();
@@ -210,6 +221,15 @@ public class SignUpInfoDialog extends DialogFragment {
         return false;
 
     }
+    private Profile p;
+
+    public SignUpInfoDialog(){
+
+    }
+
+    public SignUpInfoDialog(Profile profile){
+        this.p = profile;
+    }
 
     private void setupValues(){
         Global.ModalClasses.UserInfoModal data = Global.documentData.userInfo;
@@ -217,5 +237,6 @@ public class SignUpInfoDialog extends DialogFragment {
         yearshow.setText(getResources().getStringArray(R.array.year_info)[data.year]);
         branchshow.setText(Global.branches.get(data.branch));
         batchshow.setText(Global.batches.get(data.batch));
+
     }
 }

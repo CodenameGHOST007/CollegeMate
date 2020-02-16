@@ -32,10 +32,11 @@
             android:id="@+id/recycler_reminder_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
             android:textAppearance="@style/NormalTextViewAppearance"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recycler_reminder_subject" />
 

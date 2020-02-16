@@ -81,7 +81,7 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("query",0);
-                SignUpInfoDialog dialog = new SignUpInfoDialog();
+                SignUpInfoDialog dialog = new SignUpInfoDialog(Profile.this);
                 FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
                 dialog.setArguments(bundle);
                 dialog.show(ft,"hello");
@@ -238,7 +238,7 @@ public class Profile extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
-    private void showData(){
+    public void showData(){
         Global.ModalClasses.UserInfoModal data = Global.documentData.userInfo;
         name.setText(data.name);
         if(data.gender == 1){
@@ -248,7 +248,7 @@ public class Profile extends AppCompatActivity {
         }
         branch.setText(Global.branches.get(data.branch));
         batch.setText(Global.batches.get(data.batch));
-        year.setText(String.valueOf(data.year));
+        year.setText(getResources().getStringArray(R.array.year_info)[Global.documentData.userInfo.year]);
 
     }
 }

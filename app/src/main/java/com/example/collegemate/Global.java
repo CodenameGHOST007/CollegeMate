@@ -111,6 +111,7 @@ public class Global {
                 this.body = body;
             }
         }
+
     }
 
     //Class to store all the data from UserDocument from Firebase

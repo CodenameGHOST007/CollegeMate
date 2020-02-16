@@ -7,7 +7,7 @@
     <item android:title="Reminders"
         android:id="@+id/home_bottom_nav_reminders"
         android:icon="@drawable/reminder_icon"/>
-    <item android:title="Notifications"
+    <item android:title="Polls"
         android:id="@+id/home_bottom_nav_notificaion"
-        android:icon="@drawable/notificaiton_icon"/>
+        android:icon="@drawable/poll_icon"/>
 </menu>

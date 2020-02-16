@@ -1,23 +1,17 @@
 package com.example.collegemate;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-
-import com.google.zxing.Result;
 
 
 /**
@@ -74,6 +68,7 @@ public class FragmentHome extends Fragment {
     Button assignmentreminder;
     ImageButton scan;
     Button addsubject;
+    ImageButton attendance,timetable,books;
 
 
     private Integer MY_CAMERA_REQUEST_CODE = 100;
@@ -86,8 +81,11 @@ public class FragmentHome extends Fragment {
 
         //Refrencing objects
         assignmentreminder = rootview.findViewById(R.id.home_frag_assignment_reminder);
-        scan = rootview.findViewById(R.id.fragment_home_scan);
+        scan = rootview.findViewById(R.id.fragment_home_scanner);
         addsubject = rootview.findViewById(R.id.fragment_home_addsubject);
+        attendance = rootview.findViewById(R.id.fragment_home_attendance);
+        books = rootview.findViewById(R.id.fragment_home_books);
+        timetable = rootview.findViewById(R.id.fragment_home_timetable);
 
 
         assignmentreminder.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +115,27 @@ public class FragmentHome extends Fragment {
 
                 Intent i = new Intent(getActivity(),Scanner.class);
                 startActivity(i);
+            }
+        });
+
+        attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),Attendance.class));
+            }
+        });
+
+        books.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),Books.class));
+            }
+        });
+
+        timetable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),TimeTable.class));
             }
         });
 

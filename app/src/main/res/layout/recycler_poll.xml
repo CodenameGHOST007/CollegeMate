@@ -22,6 +22,9 @@
             android:layout_marginTop="16dp"
             android:text="TextView"
             android:textAppearance="@style/NormalTextViewAppearance"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/recycler_poll_accept"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:textAppearance="@style/NormalTextViewAppearance"
             app:layout_constraintEnd_toStartOf="@+id/recycler_poll_accept"
             app:layout_constraintStart_toStartOf="@+id/recycler_poll_subject"
             app:layout_constraintTop_toBottomOf="@+id/recycler_poll_subject" />
@@ -54,10 +58,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/roundcornor_ripple"
             android:backgroundTint="@color/colorSecondary"
             android:text="Reject"
             android:textAppearance="@style/NormalTextStyle"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recycler_poll_accept" />
 
@@ -65,22 +71,23 @@
             android:id="@+id/recycler_poll_accepted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
             android:text="TextView"
+            android:textAppearance="@style/NormalTextViewAppearance"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/recycler_poll_rejected"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_poll_reject" />
+            app:layout_constraintTop_toBottomOf="@+id/recycler_poll_body" />
 
         <TextView
             android:id="@+id/recycler_poll_rejected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textAppearance="@style/NormalTextViewAppearance"
             app:layout_constraintBottom_toBottomOf="@+id/recycler_poll_accepted"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/recycler_poll_reject"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/recycler_poll_accepted"
             app:layout_constraintTop_toTopOf="@+id/recycler_poll_accepted" />
